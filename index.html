@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jaydentistry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .sparkle-container {
+  position: relative;
+  display: inline-block;
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 24px;
+  animation: sparkle-fade 2s infinite ease-in-out;
+}
+
+.sparkle-1 {
+  top: 40px;
+  left: -22px;
+  animation-delay: 0s;
+}
+
+.sparkle-2 {
+  top: 40px;
+  right: -24px;
+  animation-delay: 0.2s;
+}
+
+.sparkle-3 {
+  bottom: 40px;
+  left: -24px;
+  animation-delay: 0.4s;
+}
+
+.sparkle-4 {
+  bottom: 40px;
+  right: -22px;
+  animation-delay: 0.6s;
+}
+
+@keyframes sparkle-fade {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.3);
+  }
+}
+
+
+    .image-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .main-image-container {
+      display: block;
+      width: 500px;
+      height: 420px;
+      margin-top: -130px;
+      object-fit: cover;
+/*      border-radius: 16px;*/
+    }
+
+    
+.main-image {
+      width: 500px;
+      height: 420px;
+  position: absolute;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.image-top {
+  background-image: url('trialbg.png'); /* your background */
+  z-index: 1;
+}
+
+.image-bottom {
+  background-image: url('trial.png'); /* your subject image */
+  z-index: 2;
+}
+
+    .overlay-image {
+      position: absolute;
+      width: 100px;
+      transition: transform 0.3s ease;
+      pointer-events: none;
+  z-index: 3;
+    }
+
+    .overlay-large-image {
+      width: 150px;
+    }
+
+    .overlay-top-left {
+      bottom: -20px;
+      left: -20px;
+      transform: rotate(-10deg);
+    }
+
+    .overlay-bottom-right {
+      bottom: -20px;
+      right: -72px;
+      transform: rotate(10deg);
+    }
+
+    .image-container:hover .overlay-top-left {
+      transform: translate(-70px, -50px) rotate(-50deg);
+    }
+
+    .image-container:hover .overlay-bottom-right {
+      transform: translate(60px, 50px) rotate(35deg);
+    }
+
+    .main-container {
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .main-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('background.webp'); /* Replace with your actual image path */
+      background-size: cover;
+      background-position: center;
+      opacity: 0.2;
+      z-index: -1;
+    }
+
+    h1 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 900;
+      font-size: 100px;
+      color: #15246b;
+    }
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: 60px;
+  }
+}
+
+/* Ensure the stats-container uses flex properly */
+.stats-container {
+  display: flex;
+  justify-content: space-between; /* Align items horizontally */
+  align-items: center; /* Align items vertically */
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  flex-wrap: wrap; /* Allow items to wrap to the next line on smaller screens */
+}
+
+/* Adjust stat-box styling */
+.stat-box {
+  background-color: #0d0d42;
+  border-radius: 24px;
+  padding: 40px 30px;
+  width: 160px;
+  height: 120px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(198, 220, 245, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* Ensure the boxes are displayed correctly */
+}
+
+/* Adjust .main-under to prevent extra height */
+.main-under {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #15246b;
+  min-height: auto; /* Adjust to take only necessary height */
+  padding-bottom: 100px;
+}
+
+.inner-under {
+  width: 80%;
+  max-width: 800px;
+}
+
+
+.stat-box h1 {
+  color: #dde5ed;
+  font-size: 36px;
+  margin: 0;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+}
+
+.stat-box p {
+  color: white;
+  font-size: 14px;
+  margin-top: 8px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Add transition to fade in counters */
+.count {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.count.visible {
+  opacity: 1;
+}
+
+.progress-wrapper {
+  width: 100%;
+/*  max-width: 600px;*/
+  margin: 20px auto 10px auto;
+}
+
+.progress-bar {
+  display: flex;
+  height: 24px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.progress-segment {
+  height: 100%;
+}
+
+.pink {
+  background-color: #ff6ec7; /* or any preferred pink */
+}
+
+.blue {
+  background-color: #4a90e2;
+}
+
+.gray {
+  background-color: #ccc;
+}
+
+
+.progress-header {
+  color: white;
+  font-size: 26px;
+  margin: 0;
+  text-align: center;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+}
+
+.progress-text {
+  color: white;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.progress-divider {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 40px;
+  background-color: #0d0d42;
+  border-radius: 24px;
+  padding: 40px 30px;
+  box-shadow: 0 0 10px rgba(198, 220, 245, 0.2);
+}
+
+.progress-inner {
+  width: 300px;
+}
+
+.tiktok-marquee {
+  overflow: hidden;
+  width: 100%;
+  background-color: #0d0d42;
+  padding: 20px 0;
+}
+
+.tiktok-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 28s linear infinite;
+  gap: 20px;
+}
+
+.tiktok-marquee:hover .tiktok-track {
+  animation-play-state: paused;
+}
+
+.tiktok-track video {
+  height: 300px;
+  aspect-ratio: 9/16;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.progress-bio {
+  width: 55%; /* Make Bio section slightly wider */
+  max-width: 400px;
+}
+
+.progress-inner.expanded {
+  width: 45%; /* Keep Demographics section a bit smaller */
+  max-width: 400px;
+}
+
+@media (max-width: 840px) {
+  .stats-container {
+  flex-direction: column;
+  align-items: stretch;
+  row-gap: 20px;
+  justify-content: center;
+}
+
+.stat-box {
+  width: auto;
+display: block;
+padding: 40px 40px 0px;
+
+}
+}
+
+@media (max-width: 768px) {
+  .progress-divider {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .progress-bio,
+  .progress-inner.expanded {
+    width: 100%;
+    max-width: none;
+  }
+
+  .progress-header {
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  
+
+}
+
+.progress-small {
+  font-size: 14px;
+}
+
+.progress-left {
+  text-align: left;
+}
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="main-container">
+  <div class="sparkle-container">
+  <h1>jaydentistry</h1>
+  <span class="sparkle sparkle-1">✨</span>
+  <span class="sparkle sparkle-2">✨</span>
+  <span class="sparkle sparkle-3">✨</span>
+  <span class="sparkle sparkle-4">✨</span>
+</div>
+<div class="image-container">
+  <div class="main-image-container">
+    <div class="main-image image-top"></div>
+    <div class="main-image image-bottom"></div>
+  </div>
+  <img src="icon1.png" alt="Tooth" class="overlay-image overlay-top-left">
+  <img src="icon2.png" alt="CN Tower" class="overlay-image overlay-large-image overlay-bottom-right">
+</div>
+
+<div class="main-under">
+  <div class="inner-under">
+    <div class="stats-container">
+    <div class="stat-box">
+      <h1 class="count hidden" data-target="4100">0</h1>
+      <p>Instagram Followers</p>
+    </div>
+    <div class="stat-box">
+      <h1 class="count hidden" data-target="11500">0</h1>
+      <p>TikTok Followers</p>
+    </div>
+    <div class="stat-box">
+      <h1 class="count hidden" data-target="784200">0</h1>
+      <p>TikTok Likes</p>
+    </div>
+  </div>
+  <!-- <div class="progress-wrapper">
+    <div class="progress-bar">
+      <div class="progress-segment pink" style="width: 83%;"></div>
+      <div class="progress-segment blue" style="width: 16%;"></div>
+      <div class="progress-segment gray" style="width: 1%;"></div>
+    </div>
+  </div>
+ -->  
+ <div class="progress-divider">
+  <div class="progress-bio">
+    <p class="progress-header">Hey, I'm Jay!</p>
+    <p class="progress-text progress-small">
+      I'm a dental student at the University of Toronto, sharing my life as a young adult at the start of my dental career! My followers tune in to watch my journey as I share tips,  student must-haves, and all of my favourite places and products!
+    </p>
+  </div>
+
+  <div class="progress-inner expanded">
+    <p class="progress-header progress-left">Audience at a Glance</p>
+    <p class="progress-text progress-small">
+      <strong>Gender:</strong> 83% Female<br>
+      <strong>Top Locations:</strong> 75.9% Canada, 8.6% USA<br>
+      <strong>Age Range:</strong> 60.6% (18–24), 30.4% (25–34)
+    </p>
+  </div>
+</div>
+</div>
+
+  <div class="tiktok-marquee">
+  <div class="tiktok-track">
+    <video src="video1.mp4" muted autoplay loop playsinline></video>
+    <video src="video2.mp4" muted autoplay loop playsinline></video>
+    <video src="video3.mp4" muted autoplay loop playsinline></video>
+    <video src="video4.mp4" muted autoplay loop playsinline></video>
+    <video src="video5.mp4" muted autoplay loop playsinline></video>
+    <video src="video6.mp4" muted autoplay loop playsinline></video>
+    <video src="video7.mp4" muted autoplay loop playsinline></video>
+    <video src="video8.mp4" muted autoplay loop playsinline></video>
+    <video src="video9.mp4" muted autoplay loop playsinline></video>
+    <video src="video10.mp4" muted autoplay loop playsinline></video>
+    <video src="video11.mp4" muted autoplay loop playsinline></video>
+    <video src="video1.mp4" muted autoplay loop playsinline></video>
+    <video src="video2.mp4" muted autoplay loop playsinline></video>
+    <video src="video3.mp4" muted autoplay loop playsinline></video>
+    <video src="video4.mp4" muted autoplay loop playsinline></video>
+    <video src="video5.mp4" muted autoplay loop playsinline></video>
+    <video src="video6.mp4" muted autoplay loop playsinline></video>
+    <video src="video7.mp4" muted autoplay loop playsinline></video>
+    <video src="video8.mp4" muted autoplay loop playsinline></video>
+    <video src="video9.mp4" muted autoplay loop playsinline></video>
+    <video src="video10.mp4" muted autoplay loop playsinline></video>
+    <video src="video11.mp4" muted autoplay loop playsinline></video>
+  </div>
+</div>
+</div>
+<script>
+// Function to start the count animation
+const startCountAnimation = (counter) => {
+  const updateCount = () => {
+    const target = +counter.getAttribute('data-target');
+    const current = +counter.innerText;
+    const increment = target / 50;
+
+    if (current < target) {
+      counter.innerText = Math.ceil(current + increment);
+      setTimeout(updateCount, 20);
+    } else {
+      counter.innerText = target.toLocaleString();
+    }
+  };
+
+  updateCount();
+};
+
+// IntersectionObserver callback function to manage sequence of fade-in and counting
+const observerCallback = (entries, observer) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      const counter = entry.target;
+      
+      
+      // Start the count animation with a delay based on its index (sequential)
+      setTimeout(() => {
+      // Add the 'visible' class to trigger fade-in
+      counter.classList.add('visible');
+        startCountAnimation(counter);
+      }, index * 500); // Delay based on the index to make them animate one at a time
+
+      observer.unobserve(counter); // Stop observing after it starts animating
+    }
+  });
+};
+
+// Create an IntersectionObserver
+const observer = new IntersectionObserver(observerCallback, {
+  threshold: 0.5, // Trigger when 50% of the element is in view
+});
+
+// Target all the counters
+const counters = document.querySelectorAll('.count');
+
+// Start observing each counter
+counters.forEach(counter => {
+  observer.observe(counter);
+});
+
+const scrollEventHeader = () => {
+    const scrollPosition = window.scrollY;
+
+    // Adjust the background positions to create a parallax effect
+    const imageTop = document.querySelector('.image-top');
+    const imageBottom = document.querySelector('.image-bottom');
+
+    imageTop.style.backgroundPosition = `center ${-scrollPosition * 0.24}px`; // Parallax effect for the top image
+    imageBottom.style.backgroundPosition = `center ${scrollPosition * 0.2}px`; // Parallax effect for the bottom image
+  };
+
+window.addEventListener('scroll', scrollEventHeader);
+scrollEventHeader();
+
+</script>
+
+</body>
+</html>
